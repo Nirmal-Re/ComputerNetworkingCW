@@ -54,10 +54,11 @@ while connected:
     message(msg)
     received_msg2 = read_replies(client)
     print(received_msg2)
-    if received_msg2 == "Order Complete":  #DONE
+    if received_msg2 == "DONE":  #DONE
+        print("Order Complete")
         sys.exit()
-    elif received_msg2 == "TERMINATING...": #END
+    elif received_msg2 == "END": #END
         sys.exit()
-    elif received_msg2 == 'Invalid command-- Try again!': #ERR
+    elif received_msg2 == 'ERR': #ERR
         msg = read_replies(client)
         print(f"{msg}")

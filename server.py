@@ -113,7 +113,7 @@ def handle_client(connection, address):
                 message(connection, to_send)
 
             elif msg.upper() == "END":
-                to_send = "TERMINATING..."
+                to_send = "END"
                 message(connection, to_send)
                 connected = False
             elif counter == 4:
@@ -140,12 +140,12 @@ def handle_client(connection, address):
                 if msg1.upper() == "NEW" or msg1.upper() == "OLD":
                     command1 = True
                 elif msg1.upper() == "END":
-                    to_send = "TERMINATING..."
+                    to_send = "END"
                     message(connection, to_send)
                     connected = False
                     user = False
                 else:
-                    to_send = "Invalid command-- Try again!"
+                    to_send = "ERR"
                     message(connection, to_send)
 
                 while command1:
@@ -157,13 +157,13 @@ def handle_client(connection, address):
                         if msg == "MENU" or msg == "ORDR":
                             command2 = True
                         elif msg == "END":
-                            to_send = "TERMINATING..."
+                            to_send = "END"
                             message(connection, to_send)
                             connected = False
                             user = False
                             command1 = False
                         else:
-                            to_send = "Invalid command-- Try again!"
+                            to_send = "ERR"
                             message(connection, to_send)
 
                         while command2:
@@ -178,14 +178,14 @@ def handle_client(connection, address):
                                     if msg == "ORDR":
                                         order = False
                                     elif msg == "END":
-                                        to_send = "TERMINATING..."
+                                        to_send = "END"
                                         message(connection, to_send)
                                         connected = False
                                         user = False
                                         command1 = False
                                         order = False
                                     else:
-                                        to_send = "Invalid command-- Try again!"
+                                        to_send = "ERR"
                                         message(connection, to_send)
                                         to_send2 = "Only command you can use is ORDR"
                                         message(connection, to_send2)
@@ -233,7 +233,7 @@ def handle_client(connection, address):
                                 order_list = [starter, main, side]
                                 ORDR(customer, order_list)
 
-                                to_send = "Order Complete"
+                                to_send = "DONE"
                                 message(connection, to_send)
                                 connected = False
                                 command2 = False
@@ -254,7 +254,7 @@ def handle_client(connection, address):
                                     pick_up = False
                                     sys.exit()
                                 elif msg == "END" or msg == "end":
-                                    connection.send("TERMINATING...".encode(FORMAT))
+                                    connection.send("END".encode(FORMAT))
                                     connected = False
                                 else:
                                     to_send = "You can only use PKUP command"
